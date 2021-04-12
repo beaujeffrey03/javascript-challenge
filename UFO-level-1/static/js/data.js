@@ -1006,6 +1006,6 @@ var data = [{
     country: "us",
     shape: "light",
     durationMinutes: "1 hr",
-    comments: "It was hovering over my neighbor's house and planted some sort of egg-shaped cocoon deep in his back yard. I'd warn him but he's too far gone. His blind skepticism will ultimately be his demise."
+    comments: "It was hovering over my neighbor's house. I'll call him Gravy Cimmamon to protect his anonymity. The light injected some kind of egg-shaped cocoon deep in the back yard. I'd warn Gravy but he's too far gone. He just simply doesn't believe. His blind skepticism will ultimately be his demise. Whatever they planted there will emerge, someday...."
   },
 ];

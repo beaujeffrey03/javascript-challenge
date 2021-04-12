@@ -22,8 +22,8 @@
       </div>
     </nav>
     <div class="hero text-center">
-      <h1>UFO Sightings</h1>
-      <p>The Truth is Out There</p>
+      <h1><img src='static/images/aliens_text.png'></h1>
+      <p>Stay alert. Stay strapped.</p>
     </div>
     <div class="container">
       <div class="row margin-top-50">
@@ -39,9 +39,26 @@
                         <label for="date">Enter a Date</label>
                         <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
                       </li>
+                      <li class="filter list-group-item">
+                        <label for="date">Enter a City</label>
+                        <input class="form-control" id="city" type="text" placeholder="cucamunga">
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="date">Enter a State</label>
+                        <input class="form-control" id="state" type="text" placeholder="ca">
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="date">Enter a Country</label>
+                        <input class="form-control" id="country" type="text" placeholder="us">
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="date">Enter a Shape</label>
+                        <input class="form-control" id="shape" type="text" placeholder="circle">
+                      </li>
                     </ul>
                   </div>
                   <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+                  <button id="reset-btn" type="button" class="btn btn-default">Clear All Filters</button>
                 </form>
               </div>
             </div>
