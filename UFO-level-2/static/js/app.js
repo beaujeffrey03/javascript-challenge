@@ -10,7 +10,7 @@ var filterButton = d3.select("#filter-btn");
 var resetButton = d3.select("#reset-btn");
 
 // assign input field to variable
-var filter = d3.select(".filters");
+var filter = d3.selectAll(".filter");
 
 // assign html table body to variable
 var tbody = d3.select('tbody');
@@ -27,7 +27,7 @@ tableData.forEach((siting) => {
 // make event handlers  
 filterButton.on('click', runFilter);
 resetButton.on('click', runReset);
-filter.on('submit', runFilter);
+filter.on('change', runFilter);
 
 function runFilter() {
 
@@ -55,17 +55,44 @@ function runFilter() {
   console.log(shapeInputVal);
 
   // filter data and assign to variable
-  var filteredData = tableData.filter(siting => (siting.datetime === dateInputVal) || (siting.city === cityInputVal) || (siting.state === stateInputVal) || (siting.country === countryInputVal) || (siting.shape === shapeInputVal));
+  // var filteredData = tableData.filter(siting => (siting.datetime === dateInputVal) || (siting.city === cityInputVal) || (siting.state === stateInputVal) || (siting.country === countryInputVal) || (siting.shape === shapeInputVal));
 
-  console.log(filteredData);
+  // console.log(filteredData);
 
   output = d3.select('tbody')
 
   // clear table
   output.html('');
 
+  // IN BETWEEEN HERE
+
+  if (dateInputVal != '') {
+    filteredData = tableData.filter(siting => siting.datetime === dateInputVal);
+    // return filteredData.forEach((siting) => {
+    //   var row = tbody.append('tr');
+    //   Object.entries(siting).forEach(([key, value]) => {
+    //     var cell = row.append('td');
+    //     cell.text(value);
+    //   });
+    // });
+  }
+
+  if (cityInputVal != '') {
+    filteredData = tableData.filter(siting => siting.city === cityInputVal);
+    // return filteredData.forEach((siting) => {
+    //   var row = tbody.append('tr');
+    //   Object.entries(siting).forEach(([key, value]) => {
+    //     var cell = row.append('td');
+    //     cell.text(value);
+    //   });
+    // });
+  }
+
+  // IN BETWEEN HERE
+
+  // if all filters are blank, show all data.
   if ((dateInputVal == '') && (cityInputVal == '') && (stateInputVal == '') && (countryInputVal == '') && (shapeInputVal == '')) {
-    tableData.forEach((siting) => {
+    return tableData.forEach((siting) => {
       var row = tbody.append('tr');
       Object.entries(siting).forEach(([key, value]) => {
         var cell = row.append('td');
@@ -91,7 +118,7 @@ function runReset() {
   output.html('');
 
   // load default data to table
-  tableData.forEach((siting) => {
+  return tableData.forEach((siting) => {
     var row = tbody.append('tr');
     Object.entries(siting).forEach(([key, value]) => {
       var cell = row.append('td');

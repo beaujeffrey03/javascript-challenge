@@ -10,7 +10,7 @@ var filterButton = d3.select("#filter-btn");
 var resetButton = d3.select("#reset-btn");
 
 // assign input field to variable
-var filter = d3.select(".filters");
+var filter = d3.selectAll(".filter");
 
 // assign html table body to variable
 var tbody = d3.select('tbody');
@@ -30,7 +30,7 @@ tableData.forEach((siting) => {
 // make event handlers  
 filterButton.on('click', runFilter);
 resetButton.on('click', runReset);
-filter.on('submit', runFilter);
+filter.on('change', runFilter);
 
 function runFilter() {
 
@@ -53,8 +53,9 @@ function runFilter() {
   // clear table
   output.html('');
 
+  // if date filter is blank, reset the table.
   if (dateInputVal == '') {
-    tableData.forEach((siting) => {
+    return tableData.forEach((siting) => {
       var row = tbody.append('tr');
       Object.entries(siting).forEach(([key, value]) => {
         var cell = row.append('td');
@@ -63,8 +64,8 @@ function runFilter() {
     });
   }
 
+  // else, load filtered data to table
   else {
-  // load filtered data to table
   return filteredData.forEach((siting) => {
       var row = output.append('tr');
       Object.entries(siting).forEach(([key, value]) => {
@@ -75,7 +76,9 @@ function runFilter() {
   };
 };
 
+// create function to reset table with button.
 function runReset() {
+
   // clear table
   output.html('');
 
