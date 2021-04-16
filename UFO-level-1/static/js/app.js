@@ -48,7 +48,7 @@ function runFilter() {
 
   console.log(filteredData);
 
-  output = d3.select('tbody')
+  output = d3.select('tbody');
 
   // clear table
   output.html('');
@@ -91,3 +91,85 @@ function runReset() {
     });
   });
 };
+
+// console.log('app.js loaded')
+
+// // assign data to variable
+// var tableData = data;
+
+// // assign filter button to variable
+// var filterButton = d3.select("#filter-btn");
+
+// // assign filter button to variable
+// var resetButton = d3.select("#reset-btn");
+
+// // assign input field to variable
+// var filter = d3.selectAll(".filter");
+
+// // assign html table body to variable
+// var tbody = d3.select('tbody');
+
+// // load default data to table
+// tableData.forEach((siting) => {
+//     var row = tbody.append('tr');
+//     Object.entries(siting).forEach(([key, value]) => {
+//       var cell = row.append('td');
+//       cell.text(value);
+//     });
+//   });
+
+// // make event handlers  
+// filterButton.on('click', runFilter);
+// resetButton.on('click', runReset);
+// filter.on('change', runFilter);
+
+// function runFilter() {
+
+//   d3.event.preventDefault();
+
+//   var dateInput = d3.select('#datetime');
+//   var dateInputVal = dateInput.property('value').replaceAll('-', '/');
+
+//   console.log(dateInputVal);
+
+//   output = d3.select('tbody');
+
+//   // clear table
+//   output.html('');
+
+//   // create filters
+//   // if all filters are blank, show all data.
+//   if (dateInputVal == '') {
+//     var filteredData = tableData
+//   }
+
+//   if (dateInputVal != '') {
+//     filteredData = tableData.filter(siting => siting.datetime === dateInputVal);
+//   }
+
+//   // return final filtered data
+//   return filteredData.forEach((siting) => {
+//     var row = tbody.append('tr');
+//     Object.entries(siting).forEach(([key, value]) => {
+//       var cell = row.append('td');
+//       cell.text(value);
+//     });
+//   })
+// };
+
+// function runReset() {
+
+//   d3.event.preventDefault();
+
+//   // clear table
+//   output.html('');
+
+//   // load default data to table
+//   return tableData.forEach((siting) => {
+//     var row = tbody.append('tr');
+//     Object.entries(siting).forEach(([key, value]) => {
+//       var cell = row.append('td');
+//       cell.text(value);
+//     });
+//   });
+// };

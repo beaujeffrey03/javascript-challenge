@@ -54,66 +54,51 @@ function runFilter() {
   console.log(countryInputVal);
   console.log(shapeInputVal);
 
-  // filter data and assign to variable
-  // var filteredData = tableData.filter(siting => (siting.datetime === dateInputVal) || (siting.city === cityInputVal) || (siting.state === stateInputVal) || (siting.country === countryInputVal) || (siting.shape === shapeInputVal));
-
-  // console.log(filteredData);
-
-  output = d3.select('tbody')
+  output = d3.select('tbody');
 
   // clear table
   output.html('');
 
-  // IN BETWEEEN HERE
+  // create filters
+  // if all filters are blank, show all data.
+  if ((dateInputVal == '') && (cityInputVal == '') && (stateInputVal == '') && (countryInputVal == '') && (shapeInputVal == '')) {
+    var filteredData = tableData
+  }
 
   if (dateInputVal != '') {
     filteredData = tableData.filter(siting => siting.datetime === dateInputVal);
-    // return filteredData.forEach((siting) => {
-    //   var row = tbody.append('tr');
-    //   Object.entries(siting).forEach(([key, value]) => {
-    //     var cell = row.append('td');
-    //     cell.text(value);
-    //   });
-    // });
   }
 
   if (cityInputVal != '') {
-    filteredData = tableData.filter(siting => siting.city === cityInputVal);
-    // return filteredData.forEach((siting) => {
-    //   var row = tbody.append('tr');
-    //   Object.entries(siting).forEach(([key, value]) => {
-    //     var cell = row.append('td');
-    //     cell.text(value);
-    //   });
-    // });
+    filteredData = filteredData.filter(siting => siting.city === cityInputVal);
   }
 
-  // IN BETWEEN HERE
-
-  // if all filters are blank, show all data.
-  if ((dateInputVal == '') && (cityInputVal == '') && (stateInputVal == '') && (countryInputVal == '') && (shapeInputVal == '')) {
-    return tableData.forEach((siting) => {
-      var row = tbody.append('tr');
-      Object.entries(siting).forEach(([key, value]) => {
-        var cell = row.append('td');
-        cell.text(value);
-      });
-    });
+  if (stateInputVal != '') {
+    filteredData = filteredData.filter(siting => siting.state === stateInputVal);
   }
 
-  else {
-  // load filtered data to table
+  if (countryInputVal != '') {
+    filteredData = filteredData.filter(siting => siting.country === countryInputVal);
+  }
+
+  if (shapeInputVal != '') {
+    filteredData = filteredData.filter(siting => siting.shape === shapeInputVal);
+  }
+
+  // return final filtered data
   return filteredData.forEach((siting) => {
-      var row = output.append('tr');
-      Object.entries(siting).forEach(([key, value]) => {
-        var cell = row.append('td');
-        cell.text(value);
-      });
+    var row = tbody.append('tr');
+    Object.entries(siting).forEach(([key, value]) => {
+      var cell = row.append('td');
+      cell.text(value);
     });
-  };
+  })
 };
 
 function runReset() {
+
+  d3.event.preventDefault();
+
   // clear table
   output.html('');
 
