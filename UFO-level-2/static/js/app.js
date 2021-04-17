@@ -6,9 +6,6 @@ var tableData = data;
 // assign filter button to variable
 var filterButton = d3.select("#filter-btn");
 
-// assign filter button to variable
-var resetButton = d3.select("#reset-btn");
-
 // assign input field to variable
 var filter = d3.selectAll(".filter");
 
@@ -16,9 +13,9 @@ var filter = d3.selectAll(".filter");
 var tbody = d3.select('tbody');
 
 // load default data to table
-tableData.forEach((siting) => {
+tableData.forEach((sighting) => {
     var row = tbody.append('tr');
-    Object.entries(siting).forEach(([key, value]) => {
+    Object.entries(sighting).forEach(([key, value]) => {
       var cell = row.append('td');
       cell.text(value);
     });
@@ -26,7 +23,6 @@ tableData.forEach((siting) => {
 
 // make event handlers  
 filterButton.on('click', runFilter);
-resetButton.on('click', runReset);
 filter.on('change', runFilter);
 
 function runFilter() {
@@ -59,6 +55,8 @@ function runFilter() {
   // clear table
   output.html('');
 
+  filteredData = tableData
+
   // create filters
   // if all filters are blank, show all data.
   if ((dateInputVal == '') && (cityInputVal == '') && (stateInputVal == '') && (countryInputVal == '') && (shapeInputVal == '')) {
@@ -66,48 +64,31 @@ function runFilter() {
   }
 
   if (dateInputVal != '') {
-    filteredData = tableData.filter(siting => siting.datetime === dateInputVal);
+    filteredData = tableData.filter(sighting => sighting.datetime === dateInputVal);
   }
 
   if (cityInputVal != '') {
-    filteredData = filteredData.filter(siting => siting.city === cityInputVal);
+    filteredData = filteredData.filter(sighting => sighting.city === cityInputVal);
   }
 
   if (stateInputVal != '') {
-    filteredData = filteredData.filter(siting => siting.state === stateInputVal);
+    filteredData = filteredData.filter(sighting => sighting.state === stateInputVal);
   }
 
   if (countryInputVal != '') {
-    filteredData = filteredData.filter(siting => siting.country === countryInputVal);
+    filteredData = filteredData.filter(sighting => sighting.country === countryInputVal);
   }
 
   if (shapeInputVal != '') {
-    filteredData = filteredData.filter(siting => siting.shape === shapeInputVal);
+    filteredData = filteredData.filter(sighting => sighting.shape === shapeInputVal);
   }
 
   // return final filtered data
-  return filteredData.forEach((siting) => {
+  return filteredData.forEach((sighting) => {
     var row = tbody.append('tr');
-    Object.entries(siting).forEach(([key, value]) => {
+    Object.entries(sighting).forEach(([key, value]) => {
       var cell = row.append('td');
       cell.text(value);
     });
   })
-};
-
-function runReset() {
-
-  d3.event.preventDefault();
-
-  // clear table
-  output.html('');
-
-  // load default data to table
-  return tableData.forEach((siting) => {
-    var row = tbody.append('tr');
-    Object.entries(siting).forEach(([key, value]) => {
-      var cell = row.append('td');
-      cell.text(value);
-    });
-  });
 };
